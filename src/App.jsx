@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ListaNoticias from "./components/ListaNoticias/ListaNoticias.jsx";
+import LecturasEspaciales from "./components/LecturasEspaciales/LecturasEspaciales.jsx";
 
 export default function App() {
   const [termino, setTermino] = useState("");
@@ -137,16 +138,13 @@ export default function App() {
           )}
           {!cargando && !error && noticias.length > 0 && (
             <>
-              <ListaNoticias
-                key={`todas-${termino}`}
-                noticias={noticias}
-                titulo="Todas las noticias cargadas"
-              />
-              <ListaNoticias
+              <LecturasEspaciales noticias={noticias} />
+              {/* <ListaNoticias
                 key={`seleccion-${termino}`}
                 noticias={noticias.slice(0, 3)}
                 titulo="Selección de tres noticias"
-              />
+              /> */}
+              
 </>
 
           )}

@@ -1,4 +1,5 @@
-import './NoticiaCard.css'
+import "./NoticiaCard.css";
+import "../LecturasEspaciales/lecturas.css";
 
 export default function NoticiaCard({
   titulo,
@@ -7,9 +8,13 @@ export default function NoticiaCard({
   fuente,
   fecha,
   enlace,
+  textoAccion,
+  onAccion,
+  deshabilitada = false,
 }) {
-  const fechaFormateada = new Intl.DateTimeFormat("es-CO", { dateStyle: "medium" })
-    .format(new Date(fecha))
+  const fechaFormateada = new Intl.DateTimeFormat("es-CO", {
+    dateStyle: "medium",
+  }).format(new Date(fecha));
 
   return (
     <article className="noticia-card">
@@ -29,9 +34,20 @@ export default function NoticiaCard({
         href={enlace}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`Leer noticia: ${titulo} (abre otra pestaña)`}
       >
         Leer noticia
       </a>
+      {onAccion && (
+        <button
+          type="button"
+          disabled={deshabilitada}
+          onClick={onAccion}
+          aria-label={`${textoAccion}: ${titulo}`}
+        >
+          {textoAccion}
+        </button>
+      )}
     </article>
-  )
+  );
 }

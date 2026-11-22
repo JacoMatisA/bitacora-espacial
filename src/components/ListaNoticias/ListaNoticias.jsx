@@ -3,7 +3,7 @@ import Filtros from "../Filtros/Filtros.jsx";
 import NoticiaCard from "../NoticiaCard/NoticiaCard.jsx";
 import { filtrosIniciales, filtrarNoticias } from "./filtrarNoticias.js";
 
-export default function ListaNoticias({ noticias, titulo }) {
+export default function ListaNoticias({ noticias, titulo, onGuardar }) {
   const [filtros, setFiltros] = useState(filtrosIniciales);
   const id = useId();
   const fuentes = [...new Set(noticias.map((noticia) => noticia.news_site))].sort();
@@ -34,6 +34,8 @@ export default function ListaNoticias({ noticias, titulo }) {
             fuente={noticia.news_site}
             fecha={noticia.published_at}
             enlace={noticia.url}
+            textoAccion={"Guardar para despues"}
+            onAccion={() => onGuardar(noticia)}
           />
         ))}
       </div>
